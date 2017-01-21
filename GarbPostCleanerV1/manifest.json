@@ -1,8 +1,12 @@
 {
   "manifest_version": 2,
   "name": "My Cool Extension",
-  "version": "0.1"
-}
+  "version": "0.1",
+  "description": "Facebook Post Cleaner",
+  "browser_action": {
+  	"default_popup": "popup.html"
+  },
+
 "content_scripts": [
   {
     "matches": [
@@ -11,3 +15,4 @@
     "js": ["content.js"]
   }
 ]
+}
