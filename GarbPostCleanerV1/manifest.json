@@ -4,15 +4,24 @@
   "version": "0.1",
   "description": "Facebook Post Cleaner",
   "browser_action": {
-  	"default_popup": "popup.html"
+    "default_popup": "popup.html"
   },
-
+  "permissions": [
+    "https://www.facebook.com/",
+    "http://www.facebook.com/",
+    "tabs",
+    "storage"
+  ],
+  "background": {
+    "scripts": ["bootstrap.js"],
+    "persistent": false
+  },
 "content_scripts": [
   {
     "matches": [
-      "<all_urls>"
+      "http://*.facebook.com/*", "https://*.facebook.com/*"
     ],
-    "js": ["content.js"]
+    "js": ["Underscore.js", "content.js"]
   }
 ]
 }
