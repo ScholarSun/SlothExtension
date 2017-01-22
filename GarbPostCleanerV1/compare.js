@@ -8,8 +8,6 @@ var dict = [
 // generate a random sloth fact
 var message_number = Math.floor(Math.random() * (dict.length));
 
-word_index = blacklist.indexOf(blacklist)
-
 if (post.toLowerCase().includes(blacklist.toLowerCase())) {
 	return dict[message_number];
 }
