@@ -7,14 +7,11 @@ var dict = [
 ];
 // generate a random sloth fact
 var message_number = Math.floor(Math.random() * (dict.length));
-
 if (post.toLowerCase().includes(blacklist.toLowerCase())) {
 	return dict[message_number];
 }
-
 return post;
 }
-
 var ay = "i eatbean";
 var lmao = "Bean";
 process.stdout.write(filter(ay, lmao));

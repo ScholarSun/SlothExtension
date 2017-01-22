@@ -1,8 +1,27 @@
 // content.js
-<<<<<<< HEAD
 // alert("Hello from your Chrome extension!")
-=======
+
+
+getpost();
 smash();
+var scroll = _.debounce(getpost, 300);
+document.addEventListener("scroll", scroll);
+
+function getpost(){
+  var suck = [];
+  var all = document.getElementsByClassName("_5jmm");
+  var conten = document.getElementsByTagName("P");
+  for (var i=0, max=conten.length; i < max; i++) {
+    console.log(conten.item(i));
+    if(_.contains(suck,conten)===false){
+      suck.push(conten);
+    }
+  }
+  console.log("BREAK HERE");
+  for(var i=0, max=suck.length; i < max; i++){
+    console.log(suck[i]);
+  }
+}
 
 function smash(){
   alert("Hello from your Chrome extension!")
@@ -13,4 +32,3 @@ function smash(){
       posts[i].parentNode.removeChild(posts[i])};
     }
   }
->>>>>>> 50d42bb4e3dad0c7587fce7d93b4a357b3299b7e
