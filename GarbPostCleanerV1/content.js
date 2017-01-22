@@ -1,7 +1,5 @@
 // content.js
 // alert("Hello from your Chrome extension!")
-
-
 getpost();
 smash();
 var scroll = _.debounce(getpost, 300);
