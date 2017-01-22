@@ -12,30 +12,35 @@ function getpost(){
   var divs = document.getElementsByClassName('_5pbx');
 
   var div;
-  var i = divs.length;
 
-  while (i--) {
+  for (var i=0, max=divs.length; i < max; i++) {
     div = divs[i];
-    div.parentNode.removeChild(div);
+    console.log(div);
+    try{
+      //div.parentNode.removeChild(div); //Remove paragraph instead of entire div
+      while (div.hasChildNodes()) {
+        div.removeChild(div.lastChild);
+      }
+    }catch(err){
+      console.log("div already removed");
+    }
     var node = document.createElement("P");                 // Create a <li> node
-    var textnode = document.createTextNode("Water bruh yo");         // Create a text node
+    var textnode = document.createTextNode("Sloth Fact");         // Create a text node
     node.appendChild(textnode);
-    console.log(node.appendChild(textnode));
+    div.appendChild(node);
     //div.parentNode.appendChild(node);                              // Append the text to <li>
-    //document.getElementByClassName("_5pbx").appendChild(node);
-
   }
 
   /*for (var i=0, max=conten.length; i < max; i++) {
-    console.log(conten.item(i));
-    if(_.contains(suck,conten)===false){
-      suck.push(conten);
-    }
-  }*/
-  console.log("BREAK HERE");
-  for(var i=0, max=suck.length; i < max; i++){
+  console.log(conten.item(i));
+  if(_.contains(suck,conten)===false){
+  suck.push(conten);
+}
+}*/
+console.log("BREAK HERE");
+for(var i=0, max=suck.length; i < max; i++){
   console.log(suck[i]);
-  }
+}
 }
 
 function smash(){
