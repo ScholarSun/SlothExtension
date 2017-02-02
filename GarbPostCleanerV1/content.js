@@ -1,58 +1,53 @@
 // content.js
 // alert("Hello from your Chrome extension!")
 getpost();
-smash();
 var scroll = _.debounce(getpost, 300);
 document.addEventListener("scroll", scroll);
 
 function getpost(){
   var suck = [];
-
-  var conten = document.getElementsByTagName("P");
   var divs = document.getElementsByClassName('_5pbx');
-
-  var div;
-
+  var stringchild = [];
+  var numero = 0;
+  //console.log(divs);
   for (var i=0, max=divs.length; i < max; i++) {
-    div = divs[i];
-    console.log(div);
-    try{
-      //div.parentNode.removeChild(div); //Remove paragraph instead of entire div
-      while (div.hasChildNodes()) {
-        div.removeChild(div.lastChild);
+    dive = divs[i];
+    //console.log(dive);
+    //check if already checked
+    if(_.contains(suck,dive)===false){
+      //dissect element
+      suck.push(dive.innerText);
+      numero=numero+1;
+      if((filter(dive.innerText,"profile"))!=true){
+        dive.innerText=filter(dive.innerText,"profile");
       }
-    }catch(err){
-      console.log("div already removed");
-    }
-    var node = document.createElement("P");                 // Create a <li> node
-    var textnode = document.createTextNode("Sloth Fact");         // Create a text node
-    node.appendChild(textnode);
-    div.appendChild(node);
-    //div.parentNode.appendChild(node);                              // Append the text to <li>
-  }
-
-  /*for (var i=0, max=conten.length; i < max; i++) {
-  console.log(conten.item(i));
-  if(_.contains(suck,conten)===false){
-  suck.push(conten);
-}
-}*/
-console.log("BREAK HERE");
-for(var i=0, max=suck.length; i < max; i++){
-  console.log(suck[i]);
-}
-}
-
-function smash(){
-  alert("Hello from your Chrome extension!")
-  var posts = document.getElementsByClassName("uiStreamMessage");
-  alert(posts);
-  for(var i=0; i<posts.length; i++){
-    if(posts[i].innerHTML.indexOf("orange") != -1){
-      posts[i].parentNode.removeChild(posts[i])};
     }
   }
+  console.log(numero);
+  console.log("suck list");
+  console.log(suck);
+}
 
-  function replace(){
-
+function filter(post, blacklist) {
+  console.log(post);
+  console.log(blacklist);
+  //dictionary of sloth facts
+  var dict = [
+    "Sloth tongues can extend 10 - 12 inches out of their mouths", "There are two types of sloths: the two-toed sloth and the three-toed sloth.",
+    "Sloths are closely related to anteaters and armadillos.", "Sloths move slow enough for algae and various creatures to live in their fur, turning them into mini-ecosystems.", "Sloths rarely climb down from the trees they live in unless they need to take their weekly dump.", "Two-toed sloths are nocturnal while Three-toed sloths are diurnal.", "Wild sloths live for around 10 - 16 years while sloths in captivity can live up to 30 years old.", "Sloths sleep for around 10 hours a day.", "Sloths can swim.", "Some extinct varieties of sloths used to be as big as elephants."
+  ];
+  // generate a random sloth fact
+  var message_number = Math.floor(Math.random() * (dict.length));
+  if (post.toLowerCase().includes(blacklist.toLowerCase())) {
+    return dict[message_number];
   }
+  return true;
+}
+
+function nodeToString ( node ) {
+  var tmpNode = document.createElement( "div" );
+  tmpNode.appendChild( node.cloneNode( true ) );
+  var str = tmpNode.innerHTML;
+  tmpNode = node = null; // prevent memory leaks in IE
+  return str;
+}
